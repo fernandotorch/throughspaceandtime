@@ -105,8 +105,10 @@
         
             // Add WMS imagery            
             class Layer{
-            constructor(){}
-            addCustomLayer(pServiceAddress, pLayerName)
+            constructor(){
+            this.serviceAddress = "https://neo.sci.gsfc.nasa.gov/wms/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0";
+            }
+            addCustomLayer(pLayerName)
 
             {var createLayer = function (xmlDom) {
                 var wms = new WorldWind.WmsCapabilities(xmlDom);
