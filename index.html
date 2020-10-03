@@ -63,13 +63,12 @@
             polygon.extrude = true;
             polygonLayer.addRenderable(polygon);
             
-   
-            
             
             class Mark {constructor(){
             this.placemarkLayer = new WorldWind.RenderableLayer();
             wwd.addLayer(this.placemarkLayer);
             
+
             this.placemarkAttributes = new WorldWind.PlacemarkAttributes(null);
 
             this.placemarkAttributes.imageOffset = new WorldWind.Offset(
@@ -97,7 +96,10 @@
             
             const mark = new Mark();
             mark.placeMark(40,-106,100,"Test");
+            mark.placeMark(30,-106,100,"Test2");
+
             
+
             
             
             // Add WMS imagery
