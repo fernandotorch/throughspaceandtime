@@ -91,7 +91,7 @@
             
             
             
-            class Mark {construktor(){
+            var mark = class Mark {construktor(){
             var placemarkLayer = new WorldWind.RenderableLayer();
             wwd.addLayer(placemarkLayer);
 
@@ -119,7 +119,6 @@
             placemarkLayer.addRenderable(placemark);
             }}
             
-            var mark = new Mark();
             mark.placeMark(40,-106,100,"Test")
             
             
