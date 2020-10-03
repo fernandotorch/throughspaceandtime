@@ -19,12 +19,14 @@
             bottom: 0;
             width: 100%;
             height: 100%;
+            z-index: 1;
         }
         </style>     
     </head>
     
     <body>
-
+        
+        
         <canvas id="canvasOne" width="1024" height="768">
             Your browser does not support HTML5 Canvas.
         </canvas>
@@ -61,32 +63,42 @@
             polygon.extrude = true;
             polygonLayer.addRenderable(polygon);
             
+   
             
             
-            var placemarkLayer = new WorldWind.RenderableLayer();
-            wwd.addLayer(placemarkLayer);
+            class Mark {constructor(){
+            this.placemarkLayer = new WorldWind.RenderableLayer();
+            wwd.addLayer(this.placemarkLayer);
+            
+            this.placemarkAttributes = new WorldWind.PlacemarkAttributes(null);
 
-            var placemarkAttributes = new WorldWind.PlacemarkAttributes(null);
-
-            placemarkAttributes.imageOffset = new WorldWind.Offset(
+            this.placemarkAttributes.imageOffset = new WorldWind.Offset(
                 WorldWind.OFFSET_FRACTION, 0.3,
                 WorldWind.OFFSET_FRACTION, 0.0);
 
-            placemarkAttributes.labelAttributes.offset = new WorldWind.Offset(
+            this.placemarkAttributes.labelAttributes.offset = new WorldWind.Offset(
                 WorldWind.OFFSET_FRACTION, 0.5,
                 WorldWind.OFFSET_FRACTION, 1.0);
 
-            placemarkAttributes.imageSource = WorldWind.configuration.baseUrl + "images/pushpins/plain-red.png";
+            this.placemarkAttributes.imageSource = WorldWind.configuration.baseUrl + "images/pushpins/plain-red.png";
+            }
+                        
+            placeMark(pLat,pLon,pAlt,pName){
+            var position = new WorldWind.Position(pLat,pLon,pAlt);
+            var placemark = new WorldWind.Placemark(position, false, this.placemarkAttributes);
 
-            var position = new WorldWind.Position(55.0, -106.0, 100.0);
-            var placemark = new WorldWind.Placemark(position, false, placemarkAttributes);
-
-            placemark.label = "Placemark\n" +
+            placemark.label = pName +"\n" +
                 "Lat " + placemark.position.latitude.toPrecision(4).toString() + "\n" +
                 "Lon " + placemark.position.longitude.toPrecision(5).toString();
             placemark.alwaysOnTop = true;
 
-            placemarkLayer.addRenderable(placemark);
+            this.placemarkLayer.addRenderable(placemark);
+            }}
+            
+            const mark = new Mark();
+            mark.placeMark(40,-106,100,"Test");
+            mark.placeMark(30,-106,100,"Test2");
+            
             
             // Add WMS imagery
             var serviceAddress = "https://neo.sci.gsfc.nasa.gov/wms/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0";
@@ -108,6 +120,8 @@
 
             $.get(serviceAddress).done(createLayer).fail(logError);
             
+            
         </script>
+        
     </body>
 </html>
