@@ -102,13 +102,12 @@
             
 
             
-            
-   // Add WMS imagery            
+        
+            // Add WMS imagery            
             class Layer{
-            constructor(){
-            this.serviceAddress = "https://neo.sci.gsfc.nasa.gov/wms/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0";
-            }
-            addCustomLayer(pLayerName)
+            constructor(){}
+            addCustomLayer(pServiceAddress, pLayerName)
+
             {var createLayer = function (xmlDom) {
                 var wms = new WorldWind.WmsCapabilities(xmlDom);
                 var wmsLayerCapabilities = wms.getNamedLayer(pLayerName);
@@ -121,10 +120,14 @@
                 console.log("There was a failure retrieving the capabilities document: " +text +" exception: " + exception);
                 };
                  
+
             $.get(this.serviceAddress).done(createLayer).fail(logError);   
             }
             }
             
+
+            
+
             
             layers= new Layer();
             layers.addCustomLayer("MOD_LSTD_CLIM_M");
