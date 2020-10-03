@@ -144,12 +144,12 @@
                 function processRequest(e) {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                 var response = xhr.responseText;
-                    alert("Code 200 --> time to partay")
+                    alert("Code 200 --> time to partay");
             		// time to partay!!!
                     parser = new DOMParser();
                     xmlDoc = parser.parseFromString(response, "text/xml");
                     
-                    or (i=15; i<20;i++){
+                    for (i=15; i<20;i++){
                 //x = xmlDoc.getElementsByTagName("Title")[i].childNodes[0].nodeValue
                 alert(xmlDoc.getElementsByTagName("Title")[i].childNodes[0].nodeValue);
                 }
