@@ -90,32 +90,33 @@
           //  placemarkLayer.addRenderable(placemark);
             
             
-            class Mark {construktor(){
-            var placemarkLayer = new WorldWind.RenderableLayer();
-            wwd.addLayer(placemarkLayer);
+            class Mark {constructor(){
+            this.placemarkLayer = new WorldWind.RenderableLayer();
+            wwd.addLayer(this.placemarkLayer);
 
-            var placemarkAttributes = new WorldWind.PlacemarkAttributes(null);
+            this.placemarkAttributes = new WorldWind.PlacemarkAttributes(null);
 
-            placemarkAttributes.imageOffset = new WorldWind.Offset(
+            this.placemarkAttributes.imageOffset = new WorldWind.Offset(
                 WorldWind.OFFSET_FRACTION, 0.3,
                 WorldWind.OFFSET_FRACTION, 0.0);
 
-            placemarkAttributes.labelAttributes.offset = new WorldWind.Offset(
+            this.placemarkAttributes.labelAttributes.offset = new WorldWind.Offset(
                 WorldWind.OFFSET_FRACTION, 0.5,
                 WorldWind.OFFSET_FRACTION, 1.0);
 
-            placemarkAttributes.imageSource = WorldWind.configuration.baseUrl + "images/pushpins/plain-red.png";
+            this.placemarkAttributes.imageSource = WorldWind.configuration.baseUrl + "images/pushpins/plain-red.png";
             }
                         
-            placeMark(pLat,pLon,pAlt,pName){var position = new WorldWind.Position(pLat,pLon,pAlt);
+            placeMark(pLat,pLon,pAlt,pName){
+            var position = new WorldWind.Position(pLat,pLon,pAlt);
             var placemark = new WorldWind.Placemark(position, false, placemarkAttributes);
 
-            placemark.label = pName"+\n" +
+            placemark.label = pName "+\n" +
                 "Lat " + placemark.position.latitude.toPrecision(4).toString() + "\n" +
                 "Lon " + placemark.position.longitude.toPrecision(5).toString();
             placemark.alwaysOnTop = true;
 
-            placemarkLayer.addRenderable(placemark);
+            this.placemarkLayer.addRenderable(placemark);
             }}
             
             const mark = new Mark();
