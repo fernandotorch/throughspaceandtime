@@ -191,7 +191,7 @@
             
             
             
-            let xhr = new XMLHttpRequest();
+           let xhr = new XMLHttpRequest();
                 xhr.open('GET', "https://neo.sci.gsfc.nasa.gov/wms/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0", true);
                 xhr.send();
                 xhr.onreadystatechange = processRequest;
@@ -204,12 +204,34 @@
                     parser = new DOMParser();
                     xmlDoc = parser.parseFromString(response, "text/xml");
                     
-                    for (i=15; i<20;i++){
-                //x = xmlDoc.getElementsByTagName("Title")[i].childNodes[0].nodeValue
-               // alert(xmlDoc.getElementsByTagName("Title")[i].childNodes[0].nodeValue);
+                    var rootElement = xmlDoc.documentElement;
+                    rootElement = rootElement.getElementsByTagName("Capability")[0];
+                   // alert(rootElement.nodeValue);
+                    rootElement = rootElement.getElementsByTagName("Layer")[0];
+                    //rootElement3 = rootElement.getElementsByTagName("Layer")[0].childNotes[0];
+                    //element2=root
+                    //alert(rootElement3.length);
+                    
+                    
+                    for (var i=0; i<5; i++){
+                   alert("2");
+                    element = rootElement.getElementsByTagName("Layer")[i];
+                    //alert(rootElement.nodeName);
+                        elem=element.getElementsByTagName("Title")[0].childNodes[0];
+                        //alert(elem.nodeValue);
+                        for (var j=0; j<3; j++){
+                            
+                            childElement = element.getElementsByTagName("Layer")[j];
+                            alert("fin");
+                            //alert(rootElement.nodeName);
+                            elem2=childElement.getElementsByTagName("Name")[0].childNodes[0];
+                           alert("dfs");
+                            alert(elem2.nodeValue);
+                    }
+                    }
                 }
                 }
-                }
+            
             
             
         </script>
