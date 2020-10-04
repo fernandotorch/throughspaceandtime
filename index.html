@@ -61,14 +61,16 @@
     </head>
     
     <body>
-     
+        <!-- timeline --> 
         <div class="slidecontainer"> 
           <input type="range" min="1" max="100" value="50" class="slider" id="timeline">
         </div>
         
-        
+        <!-- Example Overlays -->
         <button  onclick="layers.addCustomLayer('MOD_LSTD_CLIM_M')">Example Overlay1</button>
         <button  onclick="layers.addCustomLayer('GEBCO_BATHY')">Example Overlay2</button>
+        
+        <!-- overlay selection -->
           <label for="vname">Overlay:
              <input id="vname" name="vname">
           </label>
@@ -79,7 +81,7 @@
           
             
       
-    
+        <!-- EARTH -->
         <canvas id="canvasOne" width="1024" height="768">
             Your browser does not support HTML5 Canvas.
         </canvas>
@@ -97,6 +99,8 @@
            wwd.addLayer(new WorldWind.CoordinatesDisplayLayer(wwd));
            //wwd.addLayer(new WorldWind.ViewControlsLayer(wwd));
             
+            
+           //code for adding polygons
            var polygonLayer = new WorldWind.RenderableLayer();
             var polygonLayer = new WorldWind.RenderableLayer();
             wwd.addLayer(polygonLayer);
@@ -117,6 +121,7 @@
             //polygonLayer.addRenderable(polygon);
             
             
+            //code for placing placemarks
             class Mark {constructor(){
             this.placemarkLayer = new WorldWind.RenderableLayer();
             wwd.addLayer(this.placemarkLayer);
@@ -183,18 +188,13 @@
             
 
             
-
-            
             layers= new Layer();
+            //func for adding layers:
             //layers.addCustomLayer("MOD_LSTD_CLIM_M");
             //layers.addCustomLayer("GEBCO_BATHY");
             
             
-            
-            
-            
-            
-            
+            //load and proccess Nasa Earth Observation date
            let xhr = new XMLHttpRequest();
                 xhr.open('GET', "https://neo.sci.gsfc.nasa.gov/wms/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0", true);
                 xhr.send();
@@ -231,8 +231,7 @@
                                     txt+=elem[j].getElementsByTagName("Title")[0].childNodes[0].nodeValue+"\n";
                                     //txt+=elem[j].getElementsByTagName("Dimension")[0].childNodes[0].nodeValue+"\n";
                                     txt+=elem[j].getElementsByTagName("Name")[0].childNodes[0].nodeValue+"\n";
-                                    
-                         //           array.push(2);
+                                   
                                     array.push(elem[j].getElementsByTagName("Title")[0].childNodes[0].nodeValue+"\n",elem[j].getElementsByTagName("Name")[0].childNodes[0].nodeValue+"\n");
                                 }
                                 
