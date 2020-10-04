@@ -64,7 +64,10 @@
      
         <div class="slidecontainer"> 
           <input type="range" min="1" max="100" value="50" class="slider" id="timeline">
-          <button  onclick="layers.addCustomLayer('MOD_LSTD_CLIM_M')">HeatMap</button>
+        </div>
+        
+        
+        <button  onclick="layers.addCustomLayer('MOD_LSTD_CLIM_M')">Example Overlay</button>
           <label for="vname">Overlay:
              <input id="vname" name="vname">
           </label>
@@ -72,8 +75,7 @@
           <h>Time:
           <var id="vname"> time</var>
           </h>
-        </div>
- 
+          
             
       
     
@@ -92,7 +94,8 @@
 
            //wwd.addLayer(new WorldWind.CompassLayer());
            wwd.addLayer(new WorldWind.CoordinatesDisplayLayer(wwd));
-           wwd.addLayer(new WorldWind.ViewControlsLayer(wwd));
+           //wwd.addLayer(new WorldWind.ViewControlsLayer(wwd));
+            
            var polygonLayer = new WorldWind.RenderableLayer();
             var polygonLayer = new WorldWind.RenderableLayer();
             wwd.addLayer(polygonLayer);
@@ -110,7 +113,7 @@
 
             var polygon = new WorldWind.Polygon(boundaries, polygonAttributes);
             polygon.extrude = true;
-            polygonLayer.addRenderable(polygon);
+            //polygonLayer.addRenderable(polygon);
             
             
             class Mark {constructor(){
@@ -146,8 +149,8 @@
             
             
             mark = new Mark();
-            mark.placeMark(40,-106,100,"Test");
-            mark.placeMark(30,-106,100,"Test2");
+            //mark.placeMark(40,-106,100,"Test");
+            //mark.placeMark(30,-106,100,"Test2");
 
             
 
@@ -183,7 +186,7 @@
             
             layers= new Layer();
             //layers.addCustomLayer("MOD_LSTD_CLIM_M");
-            layers.addCustomLayer("GEBCO_BATHY");
+            //layers.addCustomLayer("GEBCO_BATHY");
             
             
             
@@ -229,7 +232,7 @@
                                     txt+=elem[j].getElementsByTagName("Name")[0].childNodes[0].nodeValue+"\n";
                                     
                          //           array.push(2);
-                           //         array.push(3);
+                                    array.push(elem[j].getElementsByTagName("Title")[0].childNodes[0].nodeValue+"\n",elem[j].getElementsByTagName("Name")[0].childNodes[0].nodeValue+"\n");
                                 }
                                 
                             }
