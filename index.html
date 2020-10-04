@@ -13,7 +13,7 @@
             background-color: #ccc;
             display: block;
             position: absolute;
-            top: 20;
+            top: 40;
             left: 0;
             right: 0;
             bottom: 0;
@@ -27,6 +27,12 @@
     <body>
         
         <button  onclick="layers.addCustomLayer('MOD_LSTD_CLIM_M')">HeatMap</button>
+        
+        <label for="vname">Overlay:
+        <input id="vname" name="vname">
+        </label>
+        <button  onclick="layers.addCustomLayer(document.getElementById('vname').value)"> Map </button>
+        
         
         <canvas id="canvasOne" width="1024" height="768">
             Your browser does not support HTML5 Canvas.
