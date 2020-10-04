@@ -1,4 +1,4 @@
-<!-- PROJECT SHIELDS -->
+
 <!--
 *** I'm using markdown "reference style" links for readability.
 *** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
@@ -49,7 +49,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Wouldn't it be great if you could quickly see how climate and environmental changes are evolving in different locations through time? If this sounds like you, then you are on the right place. Using NASA's open source datasets and virtual globe API we provide a simple tool for looking around Earth in an instant.
+Wouldn't it be great if you could quickly see how climate and environmental changes are evolving in different locations through time? If this sounds like you, then you are on the right place. Using NASA's open source datasets and virtual globe API we provide a simple tool for looking around Earth in an instant. And it's not even 400 lines of code, so feel free to modify it to your taste to visualise what matters most to you!
 [![Product Name Screen Shot][product-screenshot]](https://nasaspacetime.co/)
 
 
@@ -69,12 +69,18 @@ Just spin around the globe by dragging it with the left mouse click or scrolling
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [Project Board](https://github.com/fgtoralesch/throughspaceandtime/projects/1) for a list of proposed features (and known issues).
+
+See the [Project Board](https://github.com/fgtoralesch/throughspaceandtime/projects/1) for a list of proposed features (and known issues).<br>
+The major aspects are:<br>
+  -Add a searchbar for Locations, so you are able to find your the location you're intersted in faster.<br>
+  -Add a searchbar for datasets, so you can find the data you need.<br>
+  -Add a timeline for better visualistaion of changes between datasets.<br>
+  -Improve the overal usibility and experience.<br>
 
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. We specially started working in this project to let people know about the availabe data out there, but more importantly to encourage others to make it work in a weekend if they wanted to. So obviously any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -92,7 +98,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Acknowledgements
 
 * [NASA International Space Apps Challenge organisers](https://www.spaceappschallenge.org/)
-* Everyone from the program who made this possible
+* Everyone from the program who made this possible. Special mentions to Valentina (Berlin Team Lead) for encouraging us and keeping the morale up, as well as Miguel (one of the WorldWind creators) for volunteering his time and motivation to support us wiht his advice in the challenge.
 
 
 
