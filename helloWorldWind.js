@@ -1,12 +1,12 @@
-
-           var wwd = new WorldWind.WorldWindow("canvasOne");
+var wwd = new WorldWind.WorldWindow("canvasOne");
 
            wwd.addLayer(new WorldWind.BMNGOneImageLayer());
            wwd.addLayer(new WorldWind.BMNGLandsatLayer());
 
            //wwd.addLayer(new WorldWind.CompassLayer());
            wwd.addLayer(new WorldWind.CoordinatesDisplayLayer(wwd));
-           wwd.addLayer(new WorldWind.ViewControlsLayer(wwd));
+           //wwd.addLayer(new WorldWind.ViewControlsLayer(wwd));
+            
            var polygonLayer = new WorldWind.RenderableLayer();
             var polygonLayer = new WorldWind.RenderableLayer();
             wwd.addLayer(polygonLayer);
@@ -24,7 +24,7 @@
 
             var polygon = new WorldWind.Polygon(boundaries, polygonAttributes);
             polygon.extrude = true;
-            polygonLayer.addRenderable(polygon);
+            //polygonLayer.addRenderable(polygon);
             
             
             class Mark {constructor(){
@@ -57,30 +57,105 @@
             this.placemarkLayer.addRenderable(placemark);
             }}
             
-            const mark = new Mark();
-            mark.placeMark(40,-106,100,"Test");
-            mark.placeMark(30,-106,100,"Test2");
+            
+            
+            mark = new Mark();
+            //mark.placeMark(40,-106,100,"Test");
+            //mark.placeMark(30,-106,100,"Test2");
 
             
 
             
-            
-            // Add WMS imagery
-            var serviceAddress = "https://neo.sci.gsfc.nasa.gov/wms/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0";
-            var layerName = "MOD_LSTD_CLIM_M";
+        
+            // Add WMS imagery            
+            class Layer{
+            constructor(){
+            this.serviceAddress = "https://neo.sci.gsfc.nasa.gov/wms/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0";
+            }
+            addCustomLayer(pLayerName)
 
-            var createLayer = function (xmlDom) {
+            {var createLayer = function (xmlDom) {
                 var wms = new WorldWind.WmsCapabilities(xmlDom);
-                var wmsLayerCapabilities = wms.getNamedLayer(layerName);
+                var wmsLayerCapabilities = wms.getNamedLayer(pLayerName);
                 var wmsConfig = WorldWind.WmsLayer.formLayerConfiguration(wmsLayerCapabilities);
                 var wmsLayer = new WorldWind.WmsLayer(wmsConfig);
                 wwd.addLayer(wmsLayer);
-            };
+                };
 
             var logError = function (jqXhr, text, exception) {
-                console.log("There was a failure retrieving the capabilities document: " +
-                    text +
-                " exception: " + exception);
-            };
+                console.log("There was a failure retrieving the capabilities document: " +text +" exception: " + exception);
+                };
+                 
 
-            $.get(serviceAddress).done(createLayer).fail(logError);
+            $.get(this.serviceAddress).done(createLayer).fail(logError);   
+            }
+            }
+            
+
+            
+
+            
+            layers= new Layer();
+            //layers.addCustomLayer("MOD_LSTD_CLIM_M");
+            //layers.addCustomLayer("GEBCO_BATHY");
+            
+            
+            
+            
+            
+            
+            
+           let xhr = new XMLHttpRequest();
+                xhr.open('GET', "https://neo.sci.gsfc.nasa.gov/wms/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0", true);
+                xhr.send();
+                xhr.onreadystatechange = processRequest;
+
+                function processRequest(e) {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = xhr.responseText;
+ 
+                    parser = new DOMParser();
+                    xmlDoc = parser.parseFromString(response, "text/xml");
+                    
+                    var rootElement = xmlDoc.documentElement;
+                    rootElement = rootElement.getElementsByTagName("Capability")[0];
+
+                    rootElement = rootElement.getElementsByTagName("Layer")[0];
+
+                    var txt="";
+                    var array = [[]]; 
+                    
+                    for (var i=9; i<rootElement.childNodes.length; i++){
+                    element = rootElement.childNodes;
+                    
+                        if (element[i].nodeName=="Layer"){
+                        //txt += element[i].nodeName;
+                       // txt+=element[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue;
+                       // array.push(1)
+    
+                            for (var j=0; j<element[i].childNodes.length; j++){
+                            elem=element[i].childNodes; 
+                           // alert(elem[5].nodeName);
+                                if (elem[j].nodeName=="Layer"){
+                                    //alert(1);
+                                    txt+=elem[j].getElementsByTagName("Title")[0].childNodes[0].nodeValue+"\n";
+                                    //txt+=elem[j].getElementsByTagName("Dimension")[0].childNodes[0].nodeValue+"\n";
+                                    txt+=elem[j].getElementsByTagName("Name")[0].childNodes[0].nodeValue+"\n";
+                                    
+                         //           array.push(2);
+                                    array.push(elem[j].getElementsByTagName("Title")[0].childNodes[0].nodeValue+"\n",elem[j].getElementsByTagName("Name")[0].childNodes[0].nodeValue+"\n");
+                                }
+                                
+                            }
+                    
+                    }
+
+                    
+                    }
+                    alert(txt);
+                    
+                    
+                    
+                }
+                }
+            
