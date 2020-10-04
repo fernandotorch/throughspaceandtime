@@ -199,36 +199,49 @@
                 function processRequest(e) {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                 var response = xhr.responseText;
-                    //alert("Code 200 --> time to partay");
-            		// time to partay!!!
+ 
                     parser = new DOMParser();
                     xmlDoc = parser.parseFromString(response, "text/xml");
                     
                     var rootElement = xmlDoc.documentElement;
                     rootElement = rootElement.getElementsByTagName("Capability")[0];
-                   // alert(rootElement.nodeValue);
+
                     rootElement = rootElement.getElementsByTagName("Layer")[0];
-                    //rootElement3 = rootElement.getElementsByTagName("Layer")[0].childNotes[0];
-                    //element2=root
-                    //alert(rootElement3.length);
+
+                    var txt="";
+                    var array = [[]]; 
+                    
+                    for (var i=9; i<rootElement.childNodes.length; i++){
+                    element = rootElement.childNodes;
+                    
+                        if (element[i].nodeName=="Layer"){
+                        //txt += element[i].nodeName;
+                       // txt+=element[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue;
+                       // array.push(1)
+    
+                            for (var j=0; j<element[i].childNodes.length; j++){
+                            elem=element[i].childNodes; 
+                           // alert(elem[5].nodeName);
+                                if (elem[j].nodeName=="Layer"){
+                                    //alert(1);
+                                    txt+=elem[j].getElementsByTagName("Title")[0].childNodes[0].nodeValue+"\n";
+                                    //txt+=elem[j].getElementsByTagName("Dimension")[0].childNodes[0].nodeValue+"\n";
+                                    txt+=elem[j].getElementsByTagName("Name")[0].childNodes[0].nodeValue+"\n";
+                                    
+                         //           array.push(2);
+                           //         array.push(3);
+                                }
+                                
+                            }
+                    
+                    }
+
+                    
+                    }
+                    alert(txt);
                     
                     
-                    for (var i=0; i<5; i++){
-                   alert("2");
-                    element = rootElement.getElementsByTagName("Layer")[i];
-                    //alert(rootElement.nodeName);
-                        elem=element.getElementsByTagName("Title")[0].childNodes[0];
-                        //alert(elem.nodeValue);
-                        for (var j=0; j<3; j++){
-                            
-                            childElement = element.getElementsByTagName("Layer")[j];
-                            alert("fin");
-                            //alert(rootElement.nodeName);
-                            elem2=childElement.getElementsByTagName("Name")[0].childNodes[0];
-                           alert("dfs");
-                            alert(elem2.nodeValue);
-                    }
-                    }
+                    
                 }
                 }
             
