@@ -13,7 +13,7 @@
             background-color: #ccc;
             display: block;
             position: absolute;
-            top: 0;
+            top: 20;
             left: 0;
             right: 0;
             bottom: 0;
@@ -26,6 +26,7 @@
     
     <body>
         
+        <button  onclick="layers.addCustomLayer('MOD_LSTD_CLIM_M')">HeatMap</button>
         
         <canvas id="canvasOne" width="1024" height="768">
             Your browser does not support HTML5 Canvas.
@@ -132,8 +133,13 @@
 
             
             layers= new Layer();
-            layers.addCustomLayer("MOD_LSTD_CLIM_M");
+            //layers.addCustomLayer("MOD_LSTD_CLIM_M");
             layers.addCustomLayer("GEBCO_BATHY");
+            
+            
+            
+            
+            
             
             
             let xhr = new XMLHttpRequest();
@@ -144,14 +150,14 @@
                 function processRequest(e) {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                 var response = xhr.responseText;
-                    alert("Code 200 --> time to partay");
+                    //alert("Code 200 --> time to partay");
             		// time to partay!!!
                     parser = new DOMParser();
                     xmlDoc = parser.parseFromString(response, "text/xml");
                     
                     for (i=15; i<20;i++){
                 //x = xmlDoc.getElementsByTagName("Title")[i].childNodes[0].nodeValue
-                alert(xmlDoc.getElementsByTagName("Title")[i].childNodes[0].nodeValue);
+               // alert(xmlDoc.getElementsByTagName("Title")[i].childNodes[0].nodeValue);
                 }
                 }
                 }
