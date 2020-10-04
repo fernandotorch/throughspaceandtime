@@ -69,7 +69,13 @@ Just spin around the globe by dragging it with the left mouse click or scrolling
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [Project Board](https://github.com/fgtoralesch/throughspaceandtime/projects/1) for a list of proposed features (and known issues).
+
+See the [Project Board](https://github.com/fgtoralesch/throughspaceandtime/projects/1) for a list of proposed features (and known issues).<br>
+The major aspects are:<br>
+  -Add a searchbar for Locations, so you are able to find your the location you're intersted in faster.<br>
+  -Add a searchbar for datasets, so you can find the data you need.<br>
+  -Add a timeline for better visualistaion of changes between datasets.<br>
+  -Improve the overal usibility and experience.<br>
 
 <!-- CONTRIBUTING -->
 ## Contributing
