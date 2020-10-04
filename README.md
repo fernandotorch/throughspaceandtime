@@ -92,7 +92,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Acknowledgements
 
 * [NASA International Space Apps Challenge organisers](https://www.spaceappschallenge.org/)
-* Everyone from the program who made this possible. Special mentions to Valentina (Berlin Team Lead) for encouraging us and Miguel (one of the WorldWind creators) for volunteering his time and motivation to support us in the challenge.
+* Everyone from the program who made this possible. Special mentions to Valentina (Berlin Team Lead) for encouraging us and keeping the morale up, as well as Miguel (one of the WorldWind creators) for volunteering his time and motivation to support us wiht his advice in the challenge.
 
 
 
